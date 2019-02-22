@@ -26,12 +26,24 @@ class Vampire:
         for self in Vampire.coven:
             if self.drank_blood_today is False and self.in_coffin is False:
                 Vampire.coven.remove(self)
+                return Vampire.coven
 
-    
+    @classmethod
+    def sunset(cls):
+        for vampire in Vampire.coven:
+            Vampire.drank_blood_today = False
+            Vampire.in_coffin = False
+
+    def go_home(self):
+        self.in_coffin = True
+
 
 bob = Vampire.create('Bob', 1001)
 judy = Vampire.create('Judy', 2001)
 print(Vampire.coven)
 print(bob.drink_blood())
+Vampire.sunrise()
+print(Vampire.coven)
+Vampire.sunset()
 Vampire.sunrise()
 print(Vampire.coven)
